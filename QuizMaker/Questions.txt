@@ -1,0 +1,4 @@
+1. What is your name?
+2. What's your favorite color?
+3. What did you have for lunch yesterday?
+4. Are you a student?
