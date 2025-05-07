@@ -1,12 +1,14 @@
-﻿namespace QuizMaker
+﻿using System.Xml.Serialization;
+
+namespace QuizMaker
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            string questions = File.ReadAllText(Constants.QUIZ_QUESTIONS);
+         //   string questions = File.ReadAllText(Constants.QUIZ_QUESTIONS);
             UI.DisplayWelcomeMessage();
-            UI.DisplayQuestions(questions);
+            UI.CreateQuestions();
             Console.ReadKey();
         }
     }
