@@ -22,6 +22,7 @@ namespace QuizMaker
             }
         }
 
+
         public static List<Questions> LoadQuestions()            // Deserializes the XML file and returns a list of questions
         {
             if (!File.Exists(Constants.QUIZ_QUESTIONS))               // If the XML file does not exist, return an empty list of questions
