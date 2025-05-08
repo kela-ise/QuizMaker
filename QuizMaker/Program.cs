@@ -6,9 +6,12 @@ namespace QuizMaker
     {
         static void Main(string[] args)
         {
-         //   string questions = File.ReadAllText(Constants.QUIZ_QUESTIONS);
             UI.DisplayWelcomeMessage();
-            UI.CreateQuestions();
+
+            List<Questions> questions = UI.CreateQuestions();   // Get questions from user input via UI
+
+            Logic.SaveQuestions(questions); // Pass the questions to Logic for saving
+
             Console.ReadKey();
         }
     }

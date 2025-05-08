@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfQuestions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Questions>
-    <questionEntry>What's your favourite color</questionEntry>
+    <questionEntry>u</questionEntry>
     <Choices>
-      <string>pink</string>
-      <string>green</string>
-      <string>lemon</string>
-      <string>orange</string>
+      <string>u</string>
+      <string>u</string>
+      <string>y</string>
+      <string>i</string>
     </Choices>
-    <correctAnswer>3</correctAnswer>
+    <correctAnswer>2</correctAnswer>
   </Questions>
   <Questions>
-    <questionEntry>What's you best fruit</questionEntry>
+    <questionEntry>y</questionEntry>
     <Choices>
-      <string>orange</string>
-      <string>kiwi</string>
-      <string>lime</string>
-      <string>grape</string>
+      <string>i</string>
+      <string>t</string>
+      <string>e</string>
+      <string>o</string>
     </Choices>
-    <correctAnswer>1</correctAnswer>
+    <correctAnswer>0</correctAnswer>
   </Questions>
   <Questions>
-    <questionEntry>What your favourite name</questionEntry>
+    <questionEntry>yyy</questionEntry>
     <Choices>
-      <string>mark</string>
-      <string>markson</string>
-      <string>markdavid</string>
-      <string>markmarker</string>
+      <string>m</string>
+      <string>n</string>
+      <string>o</string>
+      <string>p</string>
     </Choices>
-    <correctAnswer>1</correctAnswer>
+    <correctAnswer>2</correctAnswer>
   </Questions>
 </ArrayOfQuestions>

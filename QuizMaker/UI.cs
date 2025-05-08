@@ -1,32 +1,24 @@
-﻿using QuizMaker;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QuizMaker
 {
-   public static class UI
+    public static class UI
     {
-
-
         private const int ANSWER_OPTIONS = 4;
         private const int NUMBER_OF_QUESTIONS_TO_ENTER = 3;
         private const int DISPLAY_INDEX_OFFSET = 1;
         private const int MIN_CHOICE = 1;
+
         public static void DisplayWelcomeMessage()
         {
-            Console.WriteLine("\n This is a Quiz Maker Game!");
-
-            Console.WriteLine(" \n Create new questions ");
+            Console.WriteLine("\nThis is a Quiz Maker Game!");
+            Console.WriteLine(" \nCreate new questions ");
         }
 
-        public static void CreateQuestions()
+        public static List<Questions> CreateQuestions()
         {
             List<Questions> questions = new List<Questions>();              // List to hold all questions entered by the user
-
 
             for (int i = 0; i < NUMBER_OF_QUESTIONS_TO_ENTER; i++) // Loop to prompt the user to enter multiple questions
             {
@@ -66,15 +58,8 @@ namespace QuizMaker
                     correctAnswer = zeroBasedCorrectIndex
                 });
             }
-
-            Logic.SaveQuestions(questions);  // Save the list of questions to an XML file
-            Console.WriteLine($"\n{NUMBER_OF_QUESTIONS_TO_ENTER} questions saved!");
+            Console.WriteLine($"\n{NUMBER_OF_QUESTIONS_TO_ENTER} questions created!");
+            return questions; // Now returns the list instead of saving
         }
-
-
-
     }
 }
-
-
-
