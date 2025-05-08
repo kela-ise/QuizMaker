@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfQuestions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Questions>
-    <questionEntry>u</questionEntry>
+    <questionEntry>lines?</questionEntry>
     <Choices>
-      <string>u</string>
-      <string>u</string>
-      <string>y</string>
-      <string>i</string>
-    </Choices>
-    <correctAnswer>2</correctAnswer>
-  </Questions>
-  <Questions>
-    <questionEntry>y</questionEntry>
-    <Choices>
-      <string>i</string>
-      <string>t</string>
-      <string>e</string>
-      <string>o</string>
+      <string>straight</string>
+      <string>curved</string>
+      <string>narrow</string>
+      <string>parralel</string>
     </Choices>
     <correctAnswer>0</correctAnswer>
   </Questions>
   <Questions>
-    <questionEntry>yyy</questionEntry>
+    <questionEntry>pink?</questionEntry>
     <Choices>
-      <string>m</string>
-      <string>n</string>
-      <string>o</string>
-      <string>p</string>
+      <string>dark</string>
+      <string>light</string>
+      <string>baby ping</string>
+      <string>grey pink</string>
+    </Choices>
+    <correctAnswer>3</correctAnswer>
+  </Questions>
+  <Questions>
+    <questionEntry>Cities?</questionEntry>
+    <Choices>
+      <string>Paris</string>
+      <string>London</string>
+      <string>Toronto</string>
+      <string>Nairobi</string>
     </Choices>
     <correctAnswer>2</correctAnswer>
   </Questions>

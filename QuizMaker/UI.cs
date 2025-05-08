@@ -5,6 +5,7 @@ namespace QuizMaker
 {
     public static class UI
     {
+
         private const int ANSWER_OPTIONS = 4;
         private const int NUMBER_OF_QUESTIONS_TO_ENTER = 3;
         private const int DISPLAY_INDEX_OFFSET = 1;
@@ -18,48 +19,68 @@ namespace QuizMaker
 
         public static List<Questions> CreateQuestions()
         {
-            List<Questions> questions = new List<Questions>();              // List to hold all questions entered by the user
+            List<Questions> questions = new List<Questions>(); // List to hold all questions entered by the user
 
-            for (int i = 0; i < NUMBER_OF_QUESTIONS_TO_ENTER; i++) // Loop to prompt the user to enter multiple questions
+            for (int i = 0; i < NUMBER_OF_QUESTIONS_TO_ENTER; i++)
             {
-                Console.Write($"\nEnter question {i + DISPLAY_INDEX_OFFSET}: ");
-                string userInput = Console.ReadLine(); // get question from the user
+                string questionText = GetQuestionText(i);   // Get question text
 
-                List<string> choices = new List<string>();
-                for (int j = 0; j < ANSWER_OPTIONS; j++)
+                List<string> choices = CreateAnswers();      // Get answer choices
+
+                int correctAnswerIndex = SelectAnswer(choices);    // Get correct answer
+
+                questions.Add(new Questions
                 {
-                    Console.Write($"Choice {j + DISPLAY_INDEX_OFFSET}: ");
-                    string choice = Console.ReadLine(); // get answer choices for the current question
-                    choices.Add(choice);
-                }
-
-                Console.WriteLine("\nPlease review the choices:");
-                for (int j = 0; j < choices.Count; j++)
-                {
-                    Console.WriteLine($"{j + DISPLAY_INDEX_OFFSET}. {choices[j]}");
-                }
-
-                Console.Write($"Enter the number of the correct choice ({MIN_CHOICE}-{ANSWER_OPTIONS}): ");
-                string correctInput = Console.ReadLine();  // Prompt the user to select the correct answer
-                int correctIndex;
-                while (!int.TryParse(correctInput, out correctIndex) ||
-                       correctIndex < MIN_CHOICE || correctIndex > ANSWER_OPTIONS)
-                {
-                    Console.Write($"Please enter a valid number between {MIN_CHOICE} and {ANSWER_OPTIONS}: ");
-                    correctInput = Console.ReadLine();
-                }
-
-                int zeroBasedCorrectIndex = correctIndex - DISPLAY_INDEX_OFFSET;   // Convert the user-friendly choice number to a zero-based index
-
-                questions.Add(new Questions     // Create a new question object and add it to the list
-                {
-                    questionEntry = userInput,
+                    questionEntry = questionText,
                     Choices = choices,
-                    correctAnswer = zeroBasedCorrectIndex
+                    correctAnswer = correctAnswerIndex
                 });
             }
+
             Console.WriteLine($"\n{NUMBER_OF_QUESTIONS_TO_ENTER} questions created!");
-            return questions; // Now returns the list instead of saving
+            return questions;
+        }
+
+        private static string GetQuestionText(int questionNumber)
+        {
+            Console.Write($"\nEnter question {questionNumber + DISPLAY_INDEX_OFFSET}: ");
+            return Console.ReadLine(); // get question from the user
+        }
+
+        private static List<string> CreateAnswers()
+        {
+            List<string> choices = new List<string>();
+
+            for (int j = 0; j < ANSWER_OPTIONS; j++)
+            {
+                Console.Write($"Choice {j + DISPLAY_INDEX_OFFSET}: ");
+                string choice = Console.ReadLine(); // get answer choices
+                choices.Add(choice);
+            }
+
+            Console.WriteLine("\nPlease review the choices:");
+            for (int j = 0; j < choices.Count; j++)
+            {
+                Console.WriteLine($"{j + DISPLAY_INDEX_OFFSET}. {choices[j]}");
+            }
+
+            return choices;
+        }
+
+        private static int SelectAnswer(List<string> choices)
+        {
+            Console.Write($"Enter the number of the correct choice ({MIN_CHOICE}-{ANSWER_OPTIONS}): "); // Prompt the user to select the correct answer
+            string correctInput = Console.ReadLine();
+            int correctIndex;
+
+            while (!int.TryParse(correctInput, out correctIndex) ||
+                   correctIndex < MIN_CHOICE || correctIndex > ANSWER_OPTIONS)
+            {
+                Console.Write($"Please enter a valid number between {MIN_CHOICE} and {ANSWER_OPTIONS}: ");
+                correctInput = Console.ReadLine();
+            }
+
+            return correctIndex - DISPLAY_INDEX_OFFSET;   // Convert to zero-based index
         }
     }
 }
