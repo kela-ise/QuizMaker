@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +29,32 @@ namespace QuizMaker
             {
                 return (List<Questions>)serializer.Deserialize(file);    // Deserialize the XML content back into a List<Questions> and return it
             }
+        }
+
+        public static int TakeQuiz(List<Questions> questions)
+        {
+            int score = 0;
+            Random random = new Random();
+
+            var pickAQuestions = questions.OrderBy(q => random.Next()).ToList();
+
+            foreach (var question in pickAQuestions)
+            {
+                UI.DisplayQuestion(question);
+                int userAnswer = UI.GetUserAnswer(question.Choices.Count);
+
+                if (userAnswer == question.correctAnswer)
+                {
+                    score++;
+                    UI.DisplayCorrectAnswerFeedback();
+                }
+                else
+                {
+                    UI.DisplayIncorrectAnswerFeedback(question.Choices[question.correctAnswer]);
+                }
+            }
+
+            return score;
         }
     }
 }

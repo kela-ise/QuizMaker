@@ -5,7 +5,6 @@ namespace QuizMaker
 {
     public static class UI
     {
-
         private const int ANSWER_OPTIONS = 4;
         private const int NUMBER_OF_QUESTIONS_TO_ENTER = 3;
         private const int DISPLAY_INDEX_OFFSET = 1;
@@ -14,7 +13,18 @@ namespace QuizMaker
         public static void DisplayWelcomeMessage()
         {
             Console.WriteLine("\nThis is a Quiz Maker Game!");
-            Console.WriteLine(" \nCreate new questions ");
+        }
+
+        public static string DisplayMainMenuAndGetChoice()
+        {
+            Console.Clear();
+            Console.WriteLine("Welcome to Quiz Maker!");
+            Console.WriteLine("1. Create new quiz");
+            Console.WriteLine("2. Take a quiz");
+            Console.WriteLine("3. Exit");
+            Console.Write("Select an option: ");
+
+            return Console.ReadLine();
         }
 
         public static List<Questions> CreateQuestions()
@@ -81,6 +91,66 @@ namespace QuizMaker
             }
 
             return correctIndex - DISPLAY_INDEX_OFFSET;   // Convert to zero-based index
+        }
+
+        public static void DisplayQuizSavedMessage()
+        {
+            Console.WriteLine("\nQuiz saved successfully!");
+        }
+
+        public static void DisplayNoQuizFoundMessage()
+        {
+            Console.WriteLine("\nNo saved quiz found. Please create a quiz first.");
+        }
+
+        public static void DisplayExitMessage()
+        {
+            Console.WriteLine("\nThank you for using Quiz Maker. Goodbye!");
+        }
+
+        public static void DisplayInvalidChoiceMessage()
+        {
+            Console.WriteLine("\nInvalid choice. Please enter 1, 2, or 3.");
+        }
+
+        public static void DisplayFinalScore(int score, int totalQuestions)
+        {
+            Console.WriteLine($"\nQuiz complete! Your score: {score}/{totalQuestions}");
+        }
+
+        public static void DisplayQuestion(Questions question)
+        {
+            Console.WriteLine($"\nQuestion: {question.questionEntry}");
+
+            for (int i = 0; i < question.Choices.Count; i++)
+            {
+                Console.WriteLine($"{i + DISPLAY_INDEX_OFFSET}. {question.Choices[i]}");
+            }
+        }
+
+        public static int GetUserAnswer(int answerChoice)
+        {
+            Console.Write($"Enter your answer (1-{answerChoice}): ");
+            string userInput = Console.ReadLine();
+            int userAnswer;
+
+            while (!int.TryParse(userInput, out userAnswer) || userAnswer < MIN_CHOICE || userAnswer > answerChoice)
+            {
+                Console.Write($"Please enter a number between 1 and {answerChoice}: ");
+                userInput = Console.ReadLine();
+            }
+
+            return userAnswer - DISPLAY_INDEX_OFFSET;
+        }
+
+        public static void DisplayCorrectAnswerFeedback()
+        {
+            Console.WriteLine("Correct!\n");
+        }
+
+        public static void DisplayIncorrectAnswerFeedback(string correctAnswer)
+        {
+            Console.WriteLine($"Incorrect. The correct answer was: {correctAnswer}\n");
         }
     }
 }
