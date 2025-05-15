@@ -14,13 +14,13 @@ namespace QuizMaker
 
                 switch (choice)
                 {
-                    case "1":
+                    case Constants.CREATE_QUIZ_MODE:
                         List<Questions> questions = UI.CreateQuestions();
                         Logic.SaveQuestions(questions);
                         UI.DisplayQuizSavedMessage();
                         break;
 
-                    case "2":
+                    case Constants.TAKE_QUIZ_MODE:
                         List<Questions> loadedQuestions = Logic.LoadQuestions();
                         if (loadedQuestions.Count == 0)
                         {
@@ -28,12 +28,12 @@ namespace QuizMaker
                         }
                         else
                         {
-                            int score = Logic.TakeQuiz(loadedQuestions);
+                            int score = UI.TakeQuiz(loadedQuestions);
                             UI.DisplayFinalScore(score, loadedQuestions.Count);
                         }
                         break;
 
-                    case "3":
+                    case Constants.EXIT_MODE:
                         UI.DisplayExitMessage();
                         return;
 
